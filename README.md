@@ -1,5 +1,5 @@
-# Python classes bootcamp
-My own implementation of python classes cheetsheet which is aimed on helping to comprehend a python classes by newcomers.
+# Python classes cheetsheet
+Implementation of python classes cheetsheet which is aimed on helping to comprehend python classes by newcomers.
 
 ## Table of contents
 - [Class and instance](#class-and-instance)
@@ -13,8 +13,8 @@ My own implementation of python classes cheetsheet which is aimed on helping to 
 ### Class and instance
 ```python
 # class_and_instance.py
+
 class ClassName:
-    
     def method(self):
         pass
 
@@ -34,8 +34,8 @@ print(isinstance(ClassName, ClassName))
 ### Class VS instance VS static methods
 ```python
 # class_instance_static.py
+
 class ClassName:
-    
     def instance_method(self):
         return self
 
@@ -60,8 +60,8 @@ print(ClassName.class_method())
 ### Class and instance variables
 ```python
 # class_instance_vars.py
-class MyClass:
 
+class MyClass:
     class_var = 7
 
     def __init__(self, inst_var):
@@ -106,11 +106,11 @@ print(instance.inst_var)
 ```
 
 ### Properties
-# `@property` decorator returns a property attribute. It helps to create `getter` for read-only option, `setter` to manage set value option and `deleter` to manage delete option of an attribute.
+`@property` decorator returns a property attribute. It helps to create `getter` for read-only option, `setter` to manage set value option and `deleter` to manage delete option of an attribute.
 ```python
 # properties.py
-class Person:
 
+class Person:
     def __init__(self, first_name):
         self.first_name = first_name
 
@@ -121,7 +121,11 @@ class Person:
     @first_name.setter
     def first_name(self, name):
         if not isinstance(name, str):
-            raise TypeError('Expected to see an <str> type but got type <{}>!!!'.format(name.__class__.__name__))
+            raise TypeError(
+                "Expected to see an <str> type but got type <{}>!!!".format(
+                    name.__class__.__name__
+                )
+            )
         self._first_name = name
 
     @first_name.deleter
@@ -129,10 +133,10 @@ class Person:
         raise AttributeError('Cannot delete "first_name" attribute!!!')
 
 
-person = Person('Luke')
+person = Person("Luke")
 print(person.first_name)
 
-person.first_name = 'Mike'
+person.first_name = "Mike"
 print(person.first_name)
 
 person.first_name = 10
@@ -141,18 +145,18 @@ del person.first_name
 ```
 
 ### Magic methods
-# `magic methods` provide a simple way to make objects behave like `built-in` types.
+`magic methods` provide a simple way to make objects behave like `built-in` types.
 ```python
 # magic.py
-class Element(object):
 
+class Element:
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
-        return '"{1}" object has "value" {0} attribute with type <{2}> '.format(self.value,
-                                                                                self.__class__.__name__,
-                                                                                self.value.__class__.__name__)
+        return '"{1}" object has "value" {0} attribute with type <{2}> '.format(
+            self.value, self.__class__.__name__, self.value.__class__.__name__
+        )
 
     def __len__(self):
         return len(self.value)
@@ -161,14 +165,14 @@ class Element(object):
         return item in self.value
 
     def __call__(self, value):
-        print('Calling instance of an Element class')
+        print("Calling instance of an Element class")
         return Element(value)
 
     def __iter__(self):
-        n = 0
-        while n < len(self.value):
-            yield self.value[n]
-            n += 1
+        initial_counter = 0
+        while initial_counter < len(self.value):
+            yield self.value[initial_counter]
+            initial_counter += 1
 
 
 # instantiate an object
@@ -188,15 +192,15 @@ print(3 in element)
 print(element((5, 6)))
 
 # iterate over an instance
-for i in element:
-    print(i)
+for iteration in element:
+    print(iteration)
 ```
 
 ### Basics of classes inheritance
 ```python
 # inheritance.py
-class Animal:
 
+class Animal:
     def __init__(self, name, age, alive=True, hungry=False):
         self.name = name
         self.age = age
@@ -214,7 +218,6 @@ class Animal:
 
 
 class Parrot(Animal):
-
     def say(self):
         return 'Krrr...'
 
@@ -223,7 +226,6 @@ class Parrot(Animal):
 
 
 class Panther(Animal):
-
     def say(self):
         return 'Shhh...'
 
