@@ -205,7 +205,7 @@ class Animal:
         self.name = name
         self.age = age
         self.alive = alive
-        self.hungry=hungry
+        self.hungry = hungry
 
     def description(self):
         return "Name of an animal is {} and it is {} years old".format(self.name, self.age)
